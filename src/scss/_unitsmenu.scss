@@ -1,0 +1,153 @@
+// Bloco: Menu Flutuante das Unidades (Popover)
+.popover {
+  transform: translateX(-58px) translateY(35px);
+
+  // Injeção Mobile: Puxar o popover muito mais para a esquerda para garantir
+  // que não sai pelo lado direito do ecrã do telemóvel
+  :is(.phone) & {
+    transform: translateX(-46px) translateY(29px);
+  }
+}
+
+.units-menu {
+  background-color: var(--color-neutral-8);
+  border-radius: var(--border-radius-softer);
+  border: 1px solid var(--color-neutral-6);
+  width: fit-content;
+  min-width: 190px;
+  max-width: 240px;
+  color: var(--color-neutral-1);
+  padding: var(--space-xs) 0;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+
+  // Afasta o popover para baixo para não tapar o botão original
+  margin-top: var(--space-s);
+
+  // 1. Botão de Switch no topo
+  &__toggle-btn {
+    padding: var(--space-s) var(--space-s);
+    background-color: var(--color-neutral-7);
+    margin: 0 var(--space-xs) 0 var(--space-xs);
+    border-radius: var(--border-radius-softer);
+    border: 1px solid var(--color-neutral-1);
+    cursor: pointer;
+    font-size: var(--font-size-s);
+    font-weight: var(--font-semi-bold);
+    line-height: 1;
+    transition: background-color 0.2s ease;
+
+    &:hover {
+      background-color: var(--color-neutral-6);
+    }
+  }
+
+  // 2. Grupos de Opções (Temperatura, Vento, Precipitação)
+  &__group {
+    position: relative;
+
+    // O primeiro grupo fica limpo
+    padding-top: 0;
+
+    // Apenas os grupos que se seguem a outro desenham a linha
+    & + & {
+      padding-top: var(--space-s);
+
+      &::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: var(--space-s);
+        right: var(--space-s);
+        height: 1px;
+        background-color: var(--color-neutral-6);
+      }
+    }
+  }
+
+  // 3. Títulos Cinzentos ("Temperature", "Wind Speed")
+  &__label {
+    font-size: var(--font-size-xs);
+    color: var(--color-neutral-3);
+    padding: 0 var(--space-s);
+    display: block;
+    margin: var(--space-xs);
+  }
+
+  // 4. As linhas clicáveis ("Celsius", "km/h")
+  &__item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--space-s) var(--space-xs);
+    margin: 0 var(--space-s);
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+
+    &:has(.icon),
+    &:has(i) {
+      background-color: var(--color-neutral-7);
+      border-radius: var(--border-radius-softer);
+      margin: 0 var(--space-xs);
+      padding: var(--space-s);
+    }
+
+    span,
+    .units-menu__label {
+      font-size: var(--font-size-s);
+      color: var(--color-neutral-1) !important;
+      padding: 0;
+      margin: 0;
+    }
+
+    &:hover {
+      background-color: var(--color-neutral-6);
+    }
+
+    .icon,
+    i {
+      color: var(--color-neutral-1);
+      font-size: 12px;
+      display: flex;
+      align-items: center;
+    }
+  }
+}
+
+// Gatilho do Menu de Unidades (O Botão no Header)
+.btn-units-trigger {
+  display: flex;
+  height: 30px;
+  align-items: center;
+  gap: var(--space-s);
+  background-color: var(--color-neutral-8);
+  color: var(--color-neutral-1);
+  padding: var(--space-s);
+  margin-right: var(--space-m);
+  border-radius: var(--border-radius-softer);
+  cursor: pointer;
+  font-weight: var(--font-semi-bold);
+  transition: background-color 0.2s ease;
+
+  // Injeção Mobile: Remover margem para alinhar à direita e diminuir um pouco
+  // o padding para poupar espaço no header
+  :is(.phone) & {
+    margin-right: 0;
+    padding: var(--space-s);
+    font-weight: var(--font-regular);
+    gap: var(--space-xs);
+    border-radius: var(--border-radius-soft);
+  }
+
+  &:hover {
+    background-color: var(--color-neutral-7);
+  }
+}
+
+// Remove a formatação do Popover nativo do OutSystems
+[data-popover] .osui-popover__content,
+[data-popover] .popover-bottom {
+  background-color: transparent !important;
+  padding: 0 !important;
+  border: none !important;
+  box-shadow: none !important;
+}
