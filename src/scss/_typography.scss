@@ -1,0 +1,14 @@
+// Updated Google Fonts Import: 
+//   - Bricolage Grotesque now includes a variable weight range from 400 to 800.
+//   - DM Sans remains with its full variable spectrum. */
+@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap');
+
+body {
+  font-family: var(--font-family-sans-serif);
+  color: var(--color-neutral-1); // Aplica a cor de texto base em toda a app
+}
+
+// Bricolage Grotesque é usada para títulos grandes ou números de destaque [cite: 18]
+h1, h2, .highlight-number {
+  font-family: var(--font-family-headings);
+}

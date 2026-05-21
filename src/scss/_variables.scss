@@ -1,0 +1,36 @@
+:root {
+  // Override: Fundo principal da App
+  --color-background-body: hsl(243deg 100% 4.49%); 
+  --color-background-card: hsl(243, 96%, 9%); 
+
+  // Override: Superfície dos cartões
+  --color-neutral-8: hsl(243, 27%, 20%); 
+  --color-neutral-7: hsl(243, 23%, 24%); 
+  --color-neutral-6: hsl(243, 23%, 30%); 
+  --color-neutral-3: hsl(240, 6%, 70%); 
+  --color-neutral-1: hsl(250, 6%, 84%); 
+  --color-neutral-0: #ffffff; 
+
+  // Override: Cor de Destaque (Botões, etc)
+  --color-primary: hsl(233, 67%, 56%); 
+
+  // Fonts
+  --font-family-sans-serif: "DM Sans", sans-serif;
+  --font-family-headings: "Bricolage Grotesque", sans-serif;
+
+  // Typography Sizes
+  --font-size-hero: 60px;
+  --font-size-hero-temp: 100px;
+
+  // Border Radius
+  --border-radius-softer: 8px;
+  --border-radius-softest: 16px;
+}
+
+// Injeção Mobile Global: Ajustes de variáveis base para ecrãs pequenos
+:is(.phone) {
+  :root {
+    // Reduz o tamanho da temperatura gigante no Hero Card para telemóveis
+    --font-size-hero: 48px; 
+  }
+}
