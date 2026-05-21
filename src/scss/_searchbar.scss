@@ -1,0 +1,181 @@
+// ==========================================
+// ANIMAÇÕES DA PESQUISA
+// ==========================================
+
+// Animação suave para a Dropdown de Pesquisa aparecer
+@keyframes slideDownFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// ==========================================
+// BARRA DE PESQUISA (INPUT + BOTÃO)
+// ==========================================
+
+.search-bar {
+  display: flex;
+  gap: var(--space-s);
+  width: 100%;
+  max-width: 500px;
+  justify-content: center;
+  align-items: center; 
+
+  // Injeção Mobile: Empilha o input e o botão em telemóveis
+  :is(.phone) & {
+    flex-direction: column;
+  }
+
+  // O contentor flex do input e da lupa
+  .input-with-icon {
+    height: 40px; 
+    background-color: var(--color-neutral-8);
+    border-radius: var(--border-radius-softer);
+    display: flex;
+    align-items: center; 
+    transition: background-color 0.2s ease, outline 0.2s ease;
+
+    &:focus-within {
+      outline: 2px solid var(--color-neutral-1);
+      background-color: var(--color-neutral-9);
+    }
+
+    :is(.phone) & {
+      height: 50px;
+      font-size: var(--font-size-h5);
+      padding: 0 10px;
+    }
+  }
+
+  // O Ícone da Lupa
+  .input-with-icon-content-icon {
+    color: var(--color-neutral-1);
+    margin-left: var(--space-s);
+  }
+
+  // O Input de texto em si
+  &__input {
+    height: 40px !important; 
+    background-color: transparent !important; 
+    border: none;
+    color: var(--color-neutral-1);
+    box-shadow: none; 
+
+    &::placeholder {
+      color: var(--color-neutral-4);
+    }
+
+    &:focus {
+      outline: none; 
+    }
+  }
+
+  // Botão Search
+  &__button {
+    background-color: var(--color-primary);
+    height: 40px;
+    color: var(--color-neutral-0);
+    border: none;
+    border-radius: var(--border-radius-softer);
+    padding: 0 var(--space-base);
+    font-weight: var(--font-semi-bold);
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+
+    // Injeção Mobile: Faz o botão esticar a 100% da largura
+    :is(.phone) & {
+      width: 100%;
+      margin: 0;
+      height: 50px;
+      font-size: var(--font-size-h5);
+      font-weight: var(--font-regular);
+    }
+
+    &:hover {
+      background-color: var(--color-primary-hover);
+    }
+  }
+}
+
+// ==========================================
+// DROPDOWN DOS RESULTADOS DA PESQUISA
+// ==========================================
+
+// 1. O CASULO: Serve de âncora apenas para o Input
+.input-dropdown-wrapper {
+  position: relative;
+  width: 100%;
+  flex-grow: 1;
+  max-width: 350px; // Movido para o wrapper principal do input
+
+  // Injeção Mobile: Remove o limite de largura no telemóvel
+  :is(.phone) & {
+    max-width: 100%;
+  }
+}
+
+// 2. O DROPDOWN: A caixa que flutua
+.search-results-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  z-index: 100;
+
+  background-color: var(--color-neutral-8);
+  border: 1px solid var(--color-neutral-6);
+  border-radius: var(--border-radius-softer);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+  margin-top: var(--space-xs);
+  overflow: hidden;
+
+  transform-origin: top center;
+  animation: slideDownFadeIn 0.2s ease-out forwards;
+
+  // Limpar fundo nativo do widget List do OutSystems e forçar scroll no mobile
+  .list {
+    background-color: transparent;
+    gap: 0;
+    
+    // Injeção Mobile: Proteção de altura para ecrãs pequenos
+    :is(.phone) & {
+      max-height: 250px;
+      overflow-y: auto;
+    }
+  }
+
+  a {
+    padding: var(--space-xs) var(--space-s);
+    background-color: transparent;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    margin: var(--space-xs);
+
+    height: 26px !important;
+    display: flex;
+    align-items: center;
+
+    color: var(--color-neutral-1) !important;
+    font-size: var(--font-size-label) !important;
+    font-weight: var(--font-regular);
+    text-decoration: none !important;
+
+    span {
+      color: inherit;
+      font-size: inherit;
+      text-decoration: none;
+    }
+
+    &:hover {
+      background-color: var(--color-neutral-6);
+      margin: var(--space-xs);
+      border-radius: var(--border-radius-soft);
+      border: 1px solid var(--color-neutral-1);
+    }
+  }
+}
