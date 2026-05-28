@@ -1,0 +1,165 @@
+// ==========================================
+// DROPDOWN DE SELEÇÃO DE DIAS (Apenas Theming Visual)
+// ==========================================
+
+// 1. O BOTÃO PRINCIPAL
+.custom-days-dropdown {
+  width: -moz-fit-content;
+  width: fit-content;
+
+  .vscomp-toggle-button {
+    width: -moz-fit-content;
+    width: fit-content;
+    min-width: 119px;
+    background-color: var(--color-neutral-6);
+    border: 1px solid var(--color-neutral-6);
+    border-radius: var(--border-radius-softer);
+    padding: var(--space-xs) var(--space-s);
+    cursor: pointer;
+    transition:
+      background-color 0.2s ease,
+      border-color 0.2s ease;
+
+    :is(.phone) & {
+      padding: var(--space-xs);
+      min-width: 100px;
+      height: 40px;
+    }
+
+    &:hover {
+      background-color: var(--color-neutral-6);
+    }
+  }
+
+  .vscomp-value {
+    flex-grow: 0;
+    margin-right: var(--space-s);
+    color: var(--color-neutral-1);
+    font-size: var(--font-size-label);
+    font-weight: var(--font-semi-bold);
+
+    :is(.phone) & {
+      font-size: var(--font-size-base);
+      font-weight: var(--font-regular);
+      padding: 0 0 0 var(--space-s);
+    }
+  }
+
+  .vscomp-wrapper.has-value .vscomp-value {
+    margin: 0;
+  }
+  .vscomp-wrapper.has-clear-button .vscomp-toggle-button {
+    padding-right: var(--space-xl);
+  }
+  .vscomp-arrow {
+    margin-left: 0 !important;
+  }
+
+  .vscomp-toggle-button::after,
+  .vscomp-arrow::after {
+    color: var(--color-neutral-1) !important;
+    border-top-color: var(--color-neutral-1) !important;
+    border-bottom-color: var(--color-neutral-1) !important;
+    border-right-color: var(--color-neutral-1) !important;
+  }
+
+  .vscomp-clear-icon::before,
+  .vscomp-clear-icon::after {
+    background-color: var(--color-neutral-3);
+  }
+  .vscomp-clear-button {
+    display: none !important;
+  }
+}
+
+// ---------------------------------------------------------------- //
+
+// 2. O POPOVER DA LISTA (Apenas Cores e Espaçamentos)
+.vscomp-dropbox-container {
+  background-color: transparent !important;
+
+  .vscomp-dropbox {
+    background-color: var(--color-neutral-8) !important;
+    border: 1px solid var(--color-neutral-6) !important;
+    border-radius: var(--border-radius-softer) !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4) !important;
+    width: 100% !important;
+    transform: translateX(1px);
+
+    :is(.phone) & {
+      // No mobile, o plugin já faz o menu com a largura total necessária
+      min-width: auto;
+      transform: translateX(1px);
+    }
+  }
+
+  .vscomp-option {
+    /* 1. ESTRUTURA BASE */
+    padding: var(--space-xs) var(--space-s) !important;
+    margin: 2px var(--space-xs) !important;
+    height: 32px !important;
+    border-radius: var(--border-radius-soft) !important;
+    display: flex;
+    align-items: center;
+
+    /* 2. CORES E TRANSIÇÕES BASE */
+    background-color: transparent !important;
+    transition: background-color 0.2s ease;
+
+    /* 3. ESTILO DO TEXTO BASE */
+    .vscomp-option-text {
+      color: var(--color-neutral-1) !important;
+      font-size: var(--font-size-label) !important;
+      font-weight: var(--font-regular) !important;
+      transition: color 0.2s ease;
+    }
+
+    /* 4. ESTADO: SELECIONADO (O dia atual) */
+    &.selected {
+      background-color: var(--color-neutral-7) !important;
+
+      .vscomp-option-text {
+        color: var(--color-neutral-0) !important;
+        font-weight: var(--font-semi-bold) !important;
+      }
+    }
+
+    /* 5. ESTADO: HOVER (Rato no Desktop) & ACTIVE (Dedo no Ecrã) */
+    &:hover,
+    &:active {
+      background-color: var(--color-neutral-6) !important;
+      cursor: pointer;
+
+      .vscomp-option-text {
+        color: var(--color-neutral-0) !important;
+      }
+    }
+
+    /* 6. NEUTRALIZAR O FOCUSED AUTOMÁTICO DO PLUGIN */
+    /* Garante que o item com "foco" não ganha cor a menos que passemos o rato */
+    &.focused:not(:hover):not(:active):not(.selected) {
+      background-color: transparent !important;
+
+      .vscomp-option-text {
+        color: var(--color-neutral-1) !important;
+      }
+    }
+  }
+
+  .vscomp-options-list,
+  .vscomp-options,
+  .options-list {
+    height: auto !important;
+    min-height: auto !important;
+  }
+
+  .vscomp-options-container {
+    background-color: transparent !important;
+    max-height: none !important;
+  }
+
+  .vscomp-search-wrapper,
+  .vscomp-clear-button {
+    display: none !important;
+  }
+}
