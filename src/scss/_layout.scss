@@ -1,0 +1,176 @@
+body {
+  background-color: var(--color-background-body);
+}
+
+.screen-wrapper {
+  display: flex;
+  min-height: 100vh;
+  background-color: var(--color-background-body);
+  padding: var(--space-l);
+
+  // Injeção Mobile: Remover padding à volta do ecrã para aproveitar todo o espaço
+  :is(.phone) & {
+    padding: 0;
+  }
+}
+
+// O contentor principal da aplicação
+.weather-app-wrapper {
+  background-color: var(--color-background-card);
+  width: 100%;
+  max-width: 1025px;
+  margin: auto;
+  padding: var(--space-xl);
+  border-radius: 32px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+
+  // Injeção Mobile: Padding mais pequeno e cantos ligeiramente menos arredondados
+  :is(.phone) & {
+    padding: var(--space-base);
+    border-radius: var(--border-radius-soft);
+  }
+}
+
+// Bloco: Top Header
+.top-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: var(--space-l);
+
+  &__logo {
+    display: flex;
+    align-items: center;
+    gap: var(--space-s);
+    font-weight: var(--font-bold);
+    font-size: var(--font-size-base);
+    padding: 0 var(--space-m);
+
+    & img {
+      width: auto;
+      height: 32px;
+    }
+
+    // Injeção Mobile: Remover o padding lateral para o logo encostar à esquerda
+    :is(.phone) & {
+      padding: 0;
+
+      & img {
+        height: 30px;
+      }
+    }
+  }
+
+  &__title {
+    font-family: var(--font-family-headings);
+    font-size: var(--font-size-h2);
+    font-weight: var(--font-bold);
+  }
+
+  &__search-wrapper {
+    width: 100%;
+    max-width: 400px;
+  }
+}
+
+// O andar do meio (Apenas Título e Barra de Pesquisa)
+.search-section {
+  align-self: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-l);
+  margin: var(--space-s) 0;
+
+  &__title {
+    font-family: var(--font-family-headings);
+    font-size: var(--font-size-display);
+    font-weight: var(--font-bold);
+
+    // Injeção Mobile e Tablet: Título mais pequeno e perfeitamente centrado
+    :is(.phone, .tablet) & {
+      color: var(--color-neutral-0);
+      font-size: var(--font-size-hero);
+      font-weight: var(--font-semi-bold);
+      text-align: center;
+      line-height: 1;
+      transform: scaleY(0.9);
+    }
+  }
+
+  &__wrapper {
+    width: 100%;
+    max-width: 500px;
+
+    :is(.phone) & {
+      margin-bottom: var(--space-m);
+    }
+  }
+}
+
+// Bloco: Dashboard Layout (A Grelha Global)
+.dashboard-layout {
+  display: grid;
+  gap: var(--space-m);
+  padding: var(--space-m);
+  align-items: stretch;
+
+  /* Layout Base/Mobile (Empilhado por defeito numa coluna) */
+  grid-template-columns: 1fr;
+
+  /* Injeção Desktop (Duas colunas: Principal + Barra Lateral) */
+  :is(.desktop) & {
+    grid-template-columns: 0.7fr 0.35fr;
+  }
+
+  :is(.phone) & {
+    padding: 0;
+  }
+}
+
+// Bloco: Grelha de Métricas (Feel Like, Humidity, etc.)
+.metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); // 4 colunas base no Desktop
+  gap: var(--space-base);
+
+  // Injeção Mobile: Quebra para 2 colunas para os cartões terem espaço no telemóvel
+  :is(.phone) & {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+// A Lista Nativa do OutSystems (Comportamento Global)
+.list {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  justify-content: space-between;
+  gap: var(--space-s);
+
+  // Truque para esconder os scripts injetados do OS
+  script {
+    display: none !important;
+  }
+}
+
+// ==========================================
+// NO RESULTS STATE
+// ==========================================
+
+.no-results {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  width: 100%;
+  min-height: 50vh; // Garante o suporte da altura do ecrã
+  padding-top: var(--space-xxl); // Dá o espaçamento visual face à barra de pesquisa
+
+  &__message {
+    font-family: var(--font-family-headings);
+    font-size: var(--font-size-h4); // Utiliza a variável do teu design system
+    color: var(--color-neutral-0);
+    font-weight: var(--font-semi-bold);
+    text-align: center;
+  }
+}
