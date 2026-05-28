@@ -1,0 +1,11 @@
+.right-column {
+  width: 100%;
+  flex-shrink: 0;
+  height: 100%;
+
+  // Injeção Mobile: A altura passa a automática para acompanhar o conteúdo
+  // empilhado naturalmente até ao fim da página.
+  :is(.phone) & {
+    height: auto;
+  }
+}

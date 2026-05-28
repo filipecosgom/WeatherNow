@@ -1,0 +1,15 @@
+// 1. Estrutura da Coluna da Esquerda
+.left-column {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; // É isto que empurra o Daily Forecast para o fundo no Desktop
+  height: stretch;
+  gap: var(--space-m); // Espaço entre o Hero, Metrics e Daily
+
+  // Injeção Mobile: A altura passa a automática, uma vez que a coluna da direita 
+  // cai para debaixo desta e já não estão lado a lado.
+  :is(.phone) & {
+    height: auto !important;
+    justify-content: flex-start !important;
+  }
+}
