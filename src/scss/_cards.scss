@@ -1,0 +1,363 @@
+// Bloco: Metric Card (Humidade, Vento, etc.)
+.metric-card {
+  background-color: var(--color-neutral-8);
+  border-radius: var(--border-radius-softer);
+  border: 1px solid var(--color-neutral-6);
+  padding: var(--space-base);
+
+  // Flexbox para empilhar e espaçar o título e o valor verticalmente
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: var(--space-s);
+  line-height: 1;
+
+  :is(.phone) & {
+    padding: var(--space-m);
+    gap: var(--space-m);
+    border-radius: var(--border-radius-softest);
+  }
+
+  // Elemento: Title
+  &__title {
+    color: var(--color-neutral-3);
+    font-size: var(--font-size-s);
+    font-weight: var(--font-regular);
+    font-family: "DM Sans", sans-serif;
+
+    :is(.phone) & {
+      font-size: var(--font-size-h6);
+    }
+  }
+
+  // Elemento: Value
+  &__value {
+    color: var(--color-neutral-2);
+    font-size: var(--font-size-h5);
+    font-weight: var(--font-regular);
+    line-height: 1;
+
+    :is(.phone) & {
+      font-size: var(--font-size-h1);
+      font-weight: var(--font-light);
+    }
+  }
+}
+
+// Bloco: Daily Forecast Card (Cada dia da semana)
+.daily-card {
+  background-color: var(--color-neutral-8);
+  border-radius: var(--border-radius-softer);
+  padding: var(--space-s) var(--space-xs);
+  border: 1px solid var(--color-neutral-6);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-s);
+  min-width: 60px;
+
+  :is(.phone) & {
+    padding: var(--space-base) var(--space-s);
+    border-radius: var(--border-radius-softest);
+  }
+
+  &__day {
+    color: var(--color-neutral-1);
+    font-size: var(--font-size-s);
+    font-weight: var(--font-regular);
+
+    :is(.phone) & {
+      font-size: var(--font-size-h5);
+    }
+  }
+
+  &__icon-wrapper {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    :is(.phone) & {
+      width: 70px;
+      height: 70px;
+    }
+  }
+
+  &__temps {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    font-size: var(--font-size-s);
+    padding: 0 var(--space-xs);
+
+    .ThemeGrid_MarginGutter {
+      margin-left: 0 !important;
+    }
+
+    :is(.phone) & {
+      font-size: var(--font-size-h5);
+    }
+  }
+
+  &__temp-max {
+    color: var(--color-neutral-1);
+    font-weight: var(--font-semi-bold);
+
+    :is(.phone) & {
+      font-weight: var(--font-regular);
+    }
+  }
+
+  &__temp-min {
+    color: var(--color-neutral-5);
+
+    :is(.phone) & {
+      font-weight: var(--font-light);
+    }
+  }
+}
+
+// Bloco: Hourly Forecast Row (As linhas da barra direita)
+.hourly-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-s);
+  background-color: var(--color-neutral-7);
+  border-radius: var(--border-radius-softer);
+  border-bottom: var(--border-size-s) solid var(--color-neutral-9);
+  border: 1px solid var(--color-neutral-6);
+  height: 40px;
+
+  &__info {
+    display: flex;
+    align-items: center;
+    gap: var(--space-s);
+  }
+
+  &__time {
+    color: var(--color-neutral-1);
+    font-size: var(--font-size-s);
+    font-weight: var(--font-semi-bold);
+    text-transform: uppercase;
+  }
+
+  &__temp {
+    color: var(--color-neutral-0);
+    font-size: var(--font-size-s);
+    font-weight: var(--font-bold);
+  }
+}
+
+// Bloco: Hero Card (Cartão Azul Principal)
+.hero-card {
+  background: linear-gradient(
+    135deg,
+    var(--color-primary) 0%,
+    var(--color-indigo) 100%
+  );
+  background-image: url("/WeatherNow/img/WeatherNow.HeroCardBackground.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  min-height: 195px;
+  height: -webkit-fill-available;
+  height: -moz-available;
+  height: stretch;
+  max-height: 220px;
+  border-radius: var(--border-radius-softer);
+  padding: var(--space-l);
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  // Injeção Mobile: Empilha e centra tudo!
+  :is(.phone) & {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: var(--space-l);
+    padding: var(--space-m);
+    max-height: none;
+    border-radius: var(--border-radius-softest);
+  }
+
+  &__left {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+
+    // Injeção Mobile: Centra o texto da cidade e data
+    :is(.phone) & {
+      align-items: center;
+    }
+  }
+
+  &__right {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: var(--space-m);
+
+    // Injeção Mobile: Mantém o ícone e a temp lado a lado, mas centrados
+    :is(.phone) & {
+      justify-content: center;
+      width: 100%;
+    }
+  }
+
+  &__location {
+    font-family: var(--font-family-headings);
+    font-size: var(--font-size-h5);
+    color: var(--color-neutral-0);
+    font-weight: var(--font-bold);
+
+    :is(.phone) & {
+      font-size: var(--font-size-h1);
+      font-weight: var(--font-semi-bold);
+    }
+  }
+
+  &__date {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: var(--font-size-s);
+
+    :is(.phone) & {
+      font-size: var(--font-size-h6);
+
+      &.ThemeGrid_MarginGutter {
+        margin-left: 0 !important;
+      }
+    }
+  }
+
+  &__temp {
+    font-family: var(--font-family-headings);
+    font-style: italic;
+    font-size: var(--font-size-hero);
+    color: var(--color-neutral-0);
+    font-weight: var(--font-bold);
+    line-height: 1;
+
+    :is(.phone) & {
+      font-size: var(--font-size-hero-temp);
+      font-weight: var(--font-regular);
+    }
+  }
+
+  &__icon-wrapper {
+    width: 80px;
+    height: 80px;
+    flex-shrink: 0;
+
+    :is(.phone) & {
+      width: 110px;
+      height: 110px;
+    }
+  }
+
+  &__loading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-s);
+  }
+}
+
+// Bloco: Daily Forecast Wrapper
+.daily-forecast {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-s);
+
+  :is(.phone) & {
+    gap: var(--space-base);
+  }
+
+  &__title {
+    font-weight: var(--font-semi-bold);
+    font-size: var(--font-size-base);
+
+    :is(.phone) & {
+      font-size: var(--font-size-h4);
+    }
+  }
+
+  &__list {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: var(--space-s);
+    overflow-x: auto;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
+    // Injeção Mobile: Transforma de 7 colunas em linha para 3 colunas
+    :is(.phone) & {
+      display: grid !important; // Corrigido o duplo ponto-e-vírgula e garantido o override
+      grid-template-columns: repeat(3, 1fr) !important;
+      overflow-x: visible;
+      gap: var(--space-base);
+      height: auto !important;
+      grid-auto-rows: max-content;
+
+      // Força os wrappers dos blocos gerados a assumir a altura real do cartão
+      > * {
+        height: auto !important;
+      }
+    }
+  }
+}
+
+// Bloco: Sidebar Horária
+.hourly-sidebar {
+  width: 100%;
+  background-color: var(--color-neutral-8);
+  border-radius: var(--border-radius-softer);
+  padding: var(--space-base);
+  height: stretch;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-s);
+
+  max-height: 850px;
+  overflow-y: auto;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  // Injeção Mobile: Remove o limite de altura para não ter scroll interno no telemóvel
+  :is(.phone) & {
+    max-height: none;
+    height: auto;
+    border-radius: var(--border-radius-softest);
+  }
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0;
+    gap: var(--space-s);
+  }
+
+  &__title {
+    width: stretch;
+    font-weight: var(--font-semi-bold);
+    font-size: var(--font-size-xs);
+    padding: 0;
+    white-space: nowrap;
+
+    :is(.phone) & {
+      font-size: var(--font-size-h4);
+      font-weight: var(--font-semi-bold);
+    }
+  }
+}

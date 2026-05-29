@@ -1,0 +1,76 @@
+// ==========================================
+// ÍCONES E IMAGENS
+// ==========================================
+
+// Bloco: Weather Icon (Aplicado às imagens do clima)
+.weather-icon {
+  width: 100%;
+  height: 100%;
+  object-fit: contain; // Garante que a imagem não distorce
+  display: block; // Remove o espaçamento fantasma das imagens inline
+}
+
+// Garante que o wrapper do hourly-row não esmaga a imagem
+.hourly-row__icon-wrapper {
+  width: 32px;
+  height: 32px;
+  flex-shrink: 0; // Impede que o flexbox encolha o ícone
+}
+
+// ==========================================
+// MENUS E DROPDOWNS CUSTOMIZADOS
+// ==========================================
+
+// Bloco: Dropdown das Unidades (Units)
+.dropdown-container {
+  
+  // 1. Ocultar a seta nativa do OutSystems (desenhada no ::after do contentor pai)
+  &:has(.dropdown-units)::after {
+    display: none !important;
+  }
+
+  // 2. Aumentar a especificidade para esmagar o CSS do OutSystems
+  > select.dropdown-display.dropdown-units {
+    background-color: var(--color-neutral-6);
+    color: var(--color-neutral-1);
+    border: none;
+    border-radius: var(--border-radius-softer);
+    
+    width: auto; 
+    max-width: 130px; 
+    height: 30px;
+    
+    // Padding para caber a seta customizada
+    padding: var(--space-none) 32px var(--space-none) var(--space-base);
+    cursor: pointer;
+    margin-right: var(--space-base);
+    font-weight: var(--font-regular);
+    font-size: var(--font-size-label);
+    
+    // Esconder a seta nativa do browser
+    appearance: none; 
+    -webkit-appearance: none;
+    
+    // Seta branca customizada em SVG
+    background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23FFFFFF%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.4-12.8z%22%2F%3E%3C%2Fsvg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    background-size: 10px auto; 
+    
+    // Efeito ao abrir/clicar
+    &:focus {
+      outline: 2px solid var(--color-primary);
+    }
+
+    // Injeção Mobile: Remover margem direita para alinhar com os cantos do ecrã
+    :is(.phone) & {
+      margin-right: 0;
+    }
+
+    // Para garantir que as opções não ficam com texto branco em fundo branco no Windows
+    option {
+      background-color: var(--color-neutral-8);
+      color: var(--color-neutral-1);
+    }
+  }
+}
