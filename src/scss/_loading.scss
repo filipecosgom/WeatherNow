@@ -1,0 +1,35 @@
+// ==========================================
+// SKELETON LOADERS (Abordagem BEM Modificador)
+// ==========================================
+
+// Animação base do pulse
+@keyframes pulse {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+// O Manto: Pode ser aplicado a QUALQUER classe real (ex: daily-card skeleton--pulse)
+.skeleton--pulse {
+  background-image: none !important; // Anula a imagem de fundo do Hero Card
+  background-color: var(--color-neutral-8) !important;
+  border-color: var(--color-neutral-8) !important; // Anula bordas diferentes
+  animation: pulse 1.5s infinite ease-in-out;
+  color: transparent !important; // CRÍTICO: Esconde o texto, mas mantém o volume matemático dele!
+  pointer-events: none; // Impede cliques em elementos enquanto carregam
+
+  // Esconde imagens, ícones e SVGs para não quebrar a ilusão, mantendo o espaço físico
+  img,
+  svg,
+  i,
+  .icon,
+  .weather-icon {
+    opacity: 0 !important;
+  }
+}
