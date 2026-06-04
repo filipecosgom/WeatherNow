@@ -1,0 +1,135 @@
+The goal is to create the "Weather Now" application using the Open-Meteo API (which is free and requires no API key).
+
+1. Overview and Objectives
+
+
+Your challenge is to replicate the provided design and ensure the application provides real weather data. You will need to handle location searching, current data presentation, and future forecasts.
+
+
+
+Main Objectives:
+
+Full-stack (Light): Implement the REST integration logic (API Consumption).
+
+State Management: Control units (Celsius/Fahrenheit) throughout the app.
+
+UI Logic: Map numeric weather codes (WMO codes) to visual icons.
+
+Responsiveness: Adaptive layout (Mobile and Desktop).
+
+2. Functional Requirements
+
+
+The user should be able to:
+
+Search Location: Type the name of a city and load weather data for that location.
+
+View Current Weather: View temperature, weather icon, and location details.
+
+Detailed Metrics: See "Feels like", Humidity, Wind, and Precipitation.
+
+Daily Forecast (7 days): A list with high and low temperatures for the week.
+
+Hourly Forecast: See the temperature evolution throughout the day.
+
+Toggle Units: A button to switch between Metric (°C, km/h) and Imperial (°F, mph). This choice must update all values on the screen.
+
+3. Technical Specifications (OutSystems)
+
+
+Module: Reactive Web App (WeatherNow).
+
+Theme: Inherits from OutSystems UI.
+
+Integration: You must create the REST integrations within the Logic tab. Ideally, encapsulate the calls in Server Actions to keep your code clean (e.g., API_GetWeather, API_SearchCity).
+
+4. Style Guide (Design System)
+
+
+Configure your theme's CSS with these variables. 
+
+The design is predominantly dark ("Dark Mode").
+
+
+4.1. Colors
+Background: Neutral 900 hsl(243, 96%, 9%).
+
+Surface (Cards): Neutral 800 hsl(243, 27%, 20%).
+
+Main Text: Neutral 200 hsl(250, 6%, 84%) or Neutral 0 (White).
+
+Highlights (Blue): Blue 500 hsl(233, 67%, 56%) (e.g., Search Button).
+
+Gradient: The main card has a subtle gradient; observe the preview.jpg.
+
+
+4.2. Typography
+You have two fonts to import (Google Fonts):
+
+DM Sans: Weights 300, 500, 600, 700. Used for most text.
+
+Bricolage Grotesque: Weight 700. Likely used for large titles or highlight numbers.
+
+4.3. Layout & Breakpoints
+The design files provide specific base widths (375px for Mobile, 1440px for Desktop). However, to ensure proper responsiveness in OutSystems, you must target the platform's default breakpoints:
+
+Mobile (Phone): <= 767px (Stack content vertically).
+
+Tablet: <= 1024px (Adjust padding/margins if necessary).
+
+Desktop: > 1024px (Full two-column layout).
+
+5. API Implementation (Your Challenge)
+
+
+You will use Open-Meteo. No API key is needed.
+
+
+
+Integration Strategy: The weather API works by Latitude and Longitude, but the user searches by City Name. 
+
+
+
+Therefore, you will need two calls:
+
+Geocoding API:
+
+Endpoint: https://geocoding-api.open-meteo.com/v1/search?name=Berlin
+
+Goal: You receive the city name, the API returns the coordinates (latitude, longitude).
+
+Weather Forecast API:
+
+Example Endpoint: https://api.open-meteo.com/v1/forecast?latitude=52.52&longitude=13.41&current=temperature_2m,relative_humidity_2m....
+
+Configuration: You will need to explore the documentation to request the right fields (current, hourly, daily).
+
+Tip: The API supports unit parameters (temperature_unit=fahrenheit). You can use this or convert mathematically on the client side. I recommend passing the parameter in the API.
+
+6. Mentor Tips
+
+
+Icon Mapping: The API returns a weather_code field (e.g., 0, 1, 2, 61, etc.). You will need to create logic (Switch or Web Block with inputs) that receives this number and shows the correct image/icon (Sun, Rain, Clouds).
+
+Note: Use the icons provided in the /assets folder if they exist, or use OutSystems UI icons that are similar.
+
+Dates: The API returns dates in ISO format (e.g., "2025-08-05"). Use OutSystems date formatting functions (FormatDateTime, DayOfWeek) to show "Tuesday", "Wed", etc.
+
+Unit Dropdown: I suggest creating a Client Variable called SelectedUnit (values: "metric" or "imperial"). When the user changes the dropdown, update the variable and call the API (Data Fetch) again with the new unit.
+
+Responsiveness: The Desktop layout has two columns (Main Panel + Sidebar Forecast). On Mobile, everything stacks vertically. Use OutSystems UI Columns or CSS Grid/Flexbox to manage this.
+
+Next Step:
+
+Start by exploring the Open-Meteo documentation and test the endpoints in Postman or the browser.
+
+Create the REST Structures in Service Studio.
+
+When you can pull data for "Lisbon" and see it in the debugger, move on to building the UI.
+
+⚠️ Before you start creating the Interface ⚠️
+
+
+
+Remember to use whatever is already made, don't reinvent the wheel.
+You are using OutSystemsUI as a basis, naturally, OutSystemsUI's spacing system should persist, same for the color variable names.
